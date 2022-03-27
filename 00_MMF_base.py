@@ -1,6 +1,5 @@
 
 
-
 # checks that the ticket name is not blank 
 def not_blank (question):
     valid = False

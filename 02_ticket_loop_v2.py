@@ -3,7 +3,7 @@
 #initialise loop so that it runs at least once 
 
 
-who = ""
+who = "" 
 count = 0
 MAX_TICKETS = 5 
 
@@ -12,6 +12,10 @@ while who != "xxx" and count < MAX_TICKETS:
 
     #get details 
     who = input ("Name: ")
+
+    if who == "xxx":
+      break
+  
     count += 1 
     print ()  
 
