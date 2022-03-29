@@ -1,6 +1,6 @@
-def yes_no(question)
+def yes_no (question):
 
-  error = "please answer yes/no"
+  error = "Please answer yes/no"
 
   valid = False 
   while not valid: 
@@ -10,12 +10,14 @@ def yes_no(question)
 
     if response == "yes" or response == "y":
       return "yes "
-    elif response == "no" or response == "n"
+    elif response == "no" or response == "n":
       return "no"
     else:
         print (error)
 
 # main routine goes here
 
-for items in range (o,6): 
+for items in range (0,6): 
   want_snacks = yes_no ("Do you want snacks? ")
+  print ("Answer ok, you said:", want_snacks)
+  print()
