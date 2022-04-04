@@ -1,4 +1,4 @@
-
+import re
 
 
 # Function goes here 
@@ -23,6 +23,9 @@ def string_checker (choice, options):
     return chosen
   else: 
     return "Invalid Choice"
+
+# Regural expression to find if item starts with a number
+number_regex = "^[1-9]"
 
 # Valid snacks holds list of all snacks each item in valid snakcs is a list with valid options for each 
 # Snack <full name, letter code(a-e), and possible abbreviations etc> 
@@ -55,29 +58,47 @@ if check_snack == "Yes":
 
   desired_snack =""
   while desired_snack != "xxx":
+      
     # Ask user for desired snack and put it in lowercase 
-    desired_snack = input("Snack: ").lower()
-    if desired_snack == "xxx" : 
-      break 
+      desired_snack = input("Snack: ").lower()
+      if desired_snack == "xxx" : 
+        break 
+  
+        # If item has a number, seprate it into two (number / item)
+    if re.match(number_regex, desired_snack) : 
+      amount = int(desired_snack[0])
+      desired_snack = desired_snack[1:]
+  
+    else: 
+      amount = 1 
+      desired_snack = item   
     
-    # Check if snack is valid 
-    snack_choice = string_checker(desired_snack, valid_snacks)
-    print ("Snack Choice: ", snack_choice)
-    
-    # Add snack to list...
-    
-    # Check that snack is not the exit code before adding
-    if snack_choice != "xxx" and snack_choice != "Invalid Choice": 
-      snack_order.append(snack_choice)
+    # Remove white spaces around snack
+    desired_snack = desired_snack.strip()
 
-# Show snack order
+   # Check if snack is valid 
+  snack_choice = string_checker(desired_snack, valid_snacks)
+  print ("Snack Choice: ", snack_choice)
+
+  # Check snack amount is valid (less than 5)
+  if amount >= 5:
+    print ("Sorry - we have a four snack maximum")
+    snack_choice = "invalid choice"
+
+  # Add snack AND amount to list 
+  amount_snack = "{} {}".format(amount, snack_choice)
+
+  # Check that snack is not the exit code before adding 
+  if snack_choice != "xxx" and snack_choice != "invalid choice": 
+    snack_order.append(amount_snack)
+
+# Show snack orders 
 print ()
-if len(snack_order) == 0:
+if len(snack_order)== 0: 
   print ("Snacks Ordered: None")
 
 else:
   print ("Snacks Ordered:")
 
-  for item in snack_order: 
+  for item in snack_order:
     print (item)
-    
