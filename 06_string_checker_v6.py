@@ -58,6 +58,8 @@ if check_snack == "Yes":
 
   desired_snack =""
   while desired_snack != "xxx":
+
+    snack_row =[]
       
     # Ask user for desired snack and put it in lowercase 
     desired_snack = input("Snack: ").lower()
@@ -85,6 +87,10 @@ if check_snack == "Yes":
       print ("Sorry - we have a four snack maximum")
       snack_choice = "Invalid Choice"
 
+    # Add snack and amount to list
+    snack_row.append(amount)
+    snack_row.append(snack_choice)
+
     # Add snack AND amount to list 
     amount_snack = "{} {}".format(amount, snack_choice)
 
@@ -102,3 +108,5 @@ else:
 
   for desired_snack in snack_order:
     print (desired_snack)
+
+  print (snack_order)
