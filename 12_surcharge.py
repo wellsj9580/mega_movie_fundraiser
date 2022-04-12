@@ -1,14 +1,17 @@
 
 
-def string_checker (choice, options): 
+def string_checker (choice, options):
 
-  for var_list in options:
+  is_valid =""
+  chosen = ""
+
+  for pay_method in options:
   
     #if the snack is in one of the lists, return the full name 
-    if choice in var_list: 
+    if choice in pay_method: 
     
     # Get full name of the snack and put it in itle case so it looks nice when outputted 
-      chosen = var_list[0].title()
+      chosen = pay_method[0].title()
       is_valid = "yes"
       break 
         
@@ -40,6 +43,18 @@ while name != "xxx":
   # Ask for payment method 
   how_pay = "invalid choice"
   while how_pay == "invalid choice":
-    how_pay = input ("Please choose a payment method (cash or credit)")
+    how_pay = input ("Please choose a payment method (cash / credit)? ").lower()
     how_pay = string_checker(how_pay, pay_method)
-    
+
+    # Ask for subtotal (for testing purposes)
+  subtotal = float(input("Sub total? $"))
+
+  if how_pay == "Credit" : 
+    surcharge = 0.05 % subtotal
+  else:
+    surcharge = 0
+
+  total = subtotal + surcharge 
+
+  print: ("Name: {} | Subtotal: ${:.2f} | Surcharge: ${:.2f} | Total Payable: ${:.2f}".format(name, subtotal, surcharge. total))
+
