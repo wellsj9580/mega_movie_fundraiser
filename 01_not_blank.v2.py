@@ -7,8 +7,6 @@ def not_blank (question, error_message):
         if response !="":
             return response
         else:
-            print (error_message)
+            print ("Sorry - This can't be blank," " please enter your name")
     
-user_name = not_blank("Name: ",
-"Sorry - This can't be blank," " please enter your name")            
-
+user_name = not_blank("Name: ")
