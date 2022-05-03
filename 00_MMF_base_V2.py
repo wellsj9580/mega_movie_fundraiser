@@ -62,7 +62,7 @@ ticket_sales = 0
 while ticket_count < MAX_TICKETS:
     
   # Tells user how many seats are left 
-  if ticket_count < ticket_count - 1:
+  if ticket_count < MAX_TICKETS - 1:
       print ("You have {} seats left".format(MAX_TICKETS - ticket_count) )
   
   # Warns user that only one seat is left!
@@ -100,7 +100,7 @@ while ticket_count < MAX_TICKETS:
 # End of tickets loop
 # Calculate ticket profit 
 ticket_profit = ticket_sales - (5* ticket_count)                         
-print ("Ticket profit: ${:.2f".format(ticket_profit))
+print ("Ticket profit: ${:.2f}".format(ticket_profit))
 
 if ticket_count == MAX_TICKETS: 
     print ("You have sold all the available tickets!") 
