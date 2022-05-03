@@ -1,6 +1,5 @@
 #function goes here
 
-
 #checks fro an interger more than 0 
 def int_check(question): 
 
