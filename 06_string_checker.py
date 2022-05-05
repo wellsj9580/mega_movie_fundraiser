@@ -17,7 +17,7 @@ def string_checker(question, to_check):
                 # Returns the entire response rather than just the first letter 
                 return item 
     
-      print("Sorry that is not a vlid response")
+      print("Sorry that is not a valid response")
 
 # Main routine 
 for itrem in range(0,6):
