@@ -11,7 +11,7 @@ pita_chips =[]
 water = []
 orange_juice = []
 
-snack_lists = [popcorn,mms, pita_chips, water, orange_juice]
+snack_lists = [popcorn, mms, pita_chips, water, orange_juice]
 
 movie_data_dict = {
   'Name': all_names,

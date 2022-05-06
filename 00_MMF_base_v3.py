@@ -136,11 +136,21 @@ while name != "xxx" and ticket_count < MAX_TICKETS:
   all_names.append(name)
   all_tickets.append(ticket_price)
 
-# End of tickets loop
+  # Get snacks 
+
+  # Get payment method (ie: work out if surcharge is needed)
+
+# End of tickets / snack / payment loop
+
+# Print details... 
+movie_frame = pandas.DataFrame(movie_data_dict)
+print(movie_frame)
+  
 # Calculate ticket profit 
 ticket_profit = ticket_sales - (5* ticket_count)                         
 print ("Ticket profit: ${:.2f}".format(ticket_profit))
 
+# Tell user if they have unsold tickets...
 if ticket_count == MAX_TICKETS: 
     print ("You have sold all the available tickets!") 
 else:
@@ -153,12 +163,3 @@ else:
   # Loop to ask for snacks 
 
   # Calculate snack price 
-
-
-
-
-
-
-# Loop to get ticket details
-
-# Start of loop 
