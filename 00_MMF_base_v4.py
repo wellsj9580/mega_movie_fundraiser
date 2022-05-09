@@ -163,6 +163,8 @@ def get_snack():
     if snack_choice != "xxx" and snack_choice != "Invalid Choice": 
       snack_order.append(snack_row)
 
+    if snack_order == "xxx":
+      return snack_order
 \
 
 # main routine goes here 
@@ -213,7 +215,8 @@ movie_data_dict = {
   'Water': water, 
   'Pita Chips': pita_chips, 
   'Mms': mms,
-  'Orange Juice': orange_juice
+  'Orange Juice': orange_juice,
+  'Surcharge_multiplier': surcharge_mult_list
 }
 
 # cost of each snack 
@@ -222,8 +225,7 @@ price_dict = {
   'Water': 2,
   'Pita Chips': 4.5,
   'Mms':3,
-  'Orange Juice': 3.25,
-  'Surcharge_multiplier': surcharge_mult_list
+  'Orange Juice': 3.25
 }
 
 
@@ -282,14 +284,6 @@ while name != "xxx" and ticket_count < MAX_TICKETS:
 
   # print (snack_lists)
 
-
-  for item in snack_order:
-    if len (item) > 0:
-      to_find = (item[1])
-      amount = (item[0])
-      add_list = movie_data_dict[to_find]
-      add_list[-1] = amount 
-
   for item in snack_order:
     if len (item) > 0:
       to_find = (item[1])
@@ -300,21 +294,31 @@ while name != "xxx" and ticket_count < MAX_TICKETS:
       
 # Get payment method (ie: work out if surcharge is needed)
     
-    #Ask for payment method
-    how_pay = "invalid choice"
-    while how_pay == "invalid choice":
-      how_pay = input(
-          "Please choose a payment method (cash / credit)? ").lower()
-      how_pay = string_checker(how_pay, pay_method)
+  #Ask for payment method
+  how_pay = "invalid choice"
+  while how_pay == "invalid choice":
+    how_pay = input(
+        "Please choose a payment method (cash / credit)? ").lower()
+    how_pay = string_checker(how_pay, pay_method)
 
-    if how_pay == "Credit":
-        surcharge_multiplier = 0.05 
-    else:
-        surcharge_multiplier = 0
+  if how_pay == "Credit":
+      surcharge_multiplier = 0.05 
+  else:
+      surcharge_multiplier = 0
 
-surcharge_mult_list.append(surcharge_multiplier)
+  surcharge_mult_list.append(surcharge_multiplier)
 
 # End of tickets / snack / payment loop
+
+# debugging print statements
+print('Name', all_names)
+print('Ticket', all_tickets)
+print('Popcorn', popcorn)
+print('Water', water) 
+print('Pita Chips', pita_chips) 
+print('Mms', mms)
+print('Orange Juice', orange_juice)
+print('Surcharge_multiplier', surcharge_mult_list)
 
 # Print details... 
 # Creat dataframe and set index to name column 
@@ -324,13 +328,16 @@ movie_frame = movie_frame.set_index('Name')
 # Creates column called 'Sun Total' 
 # Fill it price fro snacks and ticket 3
 
-movie_frame["Sub Total"] = \
-    movie_frame['Ticket'] + \
+movie_frame["Snacks"] = \
     movie_frame['Popcorn']*price_dict['Popcorn'] + \
     movie_frame['Water']*price_dict['Water'] + \
     movie_frame['Pita Chips']*price_dict['Pita Chips'] + \
     movie_frame['Mms']*price_dict['Mms'] + \
     movie_frame['Orange Juice']*price_dict['Orange Juice']
+
+movie_frame["Sub Total"] = \
+    movie_frame['Ticket'] +\
+    movie_frame['Snacks']
 
 movie_frame["Surcharge"] = \
     movie_frame["Sub Total"] * movie_frame["Surcharge_multiplier"]
@@ -345,10 +352,10 @@ movie_frame = movie_frame.rename(columns = {'Orange Juice': 'OJ',
 
 
 # Set up colums to be printed... 
-pandas.set_option('display.max_colums', None)
+pandas.set_option('display.max_columns', None)
 
 # Display numbers to 2 dp...
-pandas.set_option('precision', 2)
+pandas.set_option('display.precision', 2)
 
 print_all = input ("print all colums?? (y) for yes" )
 if print_all == "y":
