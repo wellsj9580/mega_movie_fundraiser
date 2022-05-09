@@ -26,7 +26,10 @@ def string_checker(choice, options):
 
 
 # Main rotine
-pay_method = [["Cash", "ca"], ["Credit", "cr"]]
+pay_method = [
+  ["Cash", "ca"], 
+  ["Credit", "cr"]
+]
 
 # Loop until exit code...
 name = ""
